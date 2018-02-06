@@ -1,0 +1,16 @@
+		.btnbox {
+			display: table;
+      width: 100%;
+			background-color: #eb5e18;
+			margin-top: 0.8rem;
+			border-radius: 5px;
+			a {
+				height: 1.2rem;
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				color: #fff;
+				font-size: 0.3rem;
+				line-height: normal;
+			}
+		}
