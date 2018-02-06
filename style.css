@@ -11,6 +11,9 @@
 				text-align: center;
 				color: #fff;
 				font-size: 0.3rem;
-				line-height: normal;
+				line-height: normal;//核心应该是这一句这一句有了下面这些用起来也是OK的
+			        //display: flex;
+				//align-items: center;
+				//justify-content: center;
 			}
 		}
