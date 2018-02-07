@@ -10,7 +10,6 @@
 
 
 
-import FastClick from './fastclick.js';
 ((doc, win) => {
   const docEl = doc.documentElement,
     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
