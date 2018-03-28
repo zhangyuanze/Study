@@ -1,0 +1,12 @@
+const mergeSort = function loop (arr) {
+  const [base, ...other] = arr
+  if (arr.length < 2) return arr
+  let left = []
+  let right = []
+  other.map(item => {
+    if (item > base) { right.push(item) }
+    else { left.push(item) }
+  })
+  return [...loop(left), base, ...loop(right)]
+}
+mergeSort(arr)
