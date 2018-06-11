@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .number-container {
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+            width: 50px;
+            display: inline-block;
+
+        }
+
+        .number-container ul {
+            transition: all 1s ease;
+            position: absolute;
+            left: 0;
+            width: 100%;
+
+        }
+
+        .number-container ul li {
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="boxer" id="number">
+ 
+    </div>
+    <script>
+        window.onload = function () {
+             class increase {
+              constructor(dom,h){
+                  this.dom=dom;
+                  this.h=h;
+                  this.containers = [];
+                  this.init();
+              }
+              creatdom(){
+                    let container = document.createElement('div'),
+                        ul = document.createElement('ul');
+                        container.setAttribute("class", "number-container");
+                    for (let i = 0; i < 10; i++) {
+                        let li = document.createElement('li');
+                        li.appendChild(document.createTextNode(i));
+                        ul.appendChild(li);
+                    }
+                    container.appendChild(ul);
+                    return container;
+              }
+              init() {                          
+                    for(let i=0;i<4;i++){
+                        let temp=this.creatdom();
+                        this.containers.push(temp);
+                        this.dom.appendChild(temp);
+                    }
+                    
+                }
+              gotoval(val){
+                [...this.values]=String(val).match(/\.(\d{4})/)[1];
+                this.containers[0].firstChild.style.top=-this.values[0]*this.h+'px';
+                this.containers[1].firstChild.style.top=-this.values[1]*this.h+'px';
+                this.containers[2].firstChild.style.top=-this.values[2]*this.h+'px';
+                this.containers[3].firstChild.style.top=-this.values[3]*this.h+'px';
+              }
+             }
+            let container = new increase(document.querySelector('#number'),20)
+            container.gotoval(Math.random());
+            setInterval(() => container.gotoval(Math.random()), 1000)
+        }
+    </script>
+</body>
+
+</html>
