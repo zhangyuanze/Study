@@ -32,6 +32,23 @@ if ('addEventListener' in document) {
 }
 
 
+
+    /**
+ * requestAnimationFrame
+ */
+window.requestAnimationFrame = (function(){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.oRequestAnimationFrame      ||
+            window.msRequestAnimationFrame     ||
+            function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+})();
+
+
+
 const system = (() => {
   let u = navigator.userAgent;
   let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
