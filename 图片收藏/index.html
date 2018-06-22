@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<pre id="app"></pre>
+<script>
+var B = [
+        {
+            "id": 2,
+            "name": "管理",
+            "ischeck": "233",
+            "Children": [
+                {
+                    "id": 3,
+                    "name": "角色管理",
+                    "address": "RoleManager",
+                    "Children": null
+                },
+                {
+                    "id": 4,
+                    "name": "用户管理",
+                    "address": "UserManager",
+                    "Children": null
+                },
+                {
+                    "id": 5,
+                    "name": "菜单管理",
+                    "address": "MenuManager",
+                    "Children": null
+                },
+                {
+                    "id": 56,
+                    "name": "权限管理",
+                    "address": "PermissionManager",
+                    "Children": null
+                },
+                {
+                    "id": 97,
+                    "name": "日志管理",
+                    "address": "1",
+                    "Children": [
+                        {
+                            "id": 143,
+                            "name": "1",
+                            "address": "1",
+                            "Children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 147,
+            "name": "3",
+            "address": "3",
+            "Children": [
+                {
+                    "id": 153,
+                    "name": "2",
+                    "address": "2",
+                    "Children": [
+                        {
+                            "id": 154,
+                            "name": "1",
+                            "address": "1",
+                            "Children": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+const defaultFn = o => o
+const recursion = function recursion (obj, children = 'Children', convertor = defaultFn, parent) {
+    if (Array.isArray(obj)) {
+        return obj.map(item => recursion(item, children, convertor))
+    } else if (obj[children]) {
+        obj[children] = obj[children].map(item => recursion(item, children, convertor, obj))
+    }
+    return convertor(obj, parent)
+}
+
+let result = recursion(B, 'Children', 
+    ({id, name, address, Children}, parent = {id: undefined}) => ({id, title: name, address, children: Children, parent: parent.id})
+)
+
+const getItem = (obj, id) => {
+  let res
+  recursion(obj, 'children', item => {
+    if (item.id === id) { res = item }
+    return item
+  })
+  return res
+}
+const deleteItem = (obj, delId) => {
+  const item = getItem(obj, delId)
+  if (item.parent) {
+    let parent = getItem(obj, item.parent)
+    parent.children = parent.children.filter(({id}) => id !== delId)
+  } else {
+    obj.splice(obj.findIndex(t => t.id === delId), 1)
+  }
+}
+
+deleteItem(result, 5)
+document.getElementById('app').innerHTML = JSON.stringify(result, 0, 2)
+</script>
+<body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// function isArray(obj){
+  //             //return Array.isArray(obj)
+  //             //return Object.prototype.toString.apply(obj)==='[object Array]'
+  //             return obj instanceof Array
+		// }
+
+
+		// function isFunc(func){
+		// 	return typeof func ==='function';
+		// 	return Object.prototype.toString.apply(func)==='[object Function]';
+
+		// }
+
+		// function deepClone(o){
+  //           var temp = {};
+  //           for(var key in o){
+  //           	if(typeof o[key] == 'object'){
+  //                    temp[key] = deepClone(o[key])
+  //           	}else{
+  //           		temp[key] = o[key]
+  //           	}
+  //           	return temp;
+  //           }
+  //           return Object.assign({},obj)
+		// }
+
+		// function uniqueArray(arr) {
+		// 	 return arr.filter((v, i, arr) => {
+		// 		return arr.indexOf(v) === i
+		// 	})
+		// }
+
+		// function uniqueArray(arr) {
+  //            const temp = new Set(arr);
+  //            return [...temp];
+		// }
+
+		// function uniqueArray(arr) {
+  //             var temp={},result=[];
+  //             arr.map((v)=>{
+  //             	if(!temp[v]){
+  //                  result.push(v);
+  //                  temp[v]=1;
+  //             	}
+  //             })
+  //             return result;
+		// }
+
+
+		// function trimFunc(str){
+  //           var reg=/(^\s*)|(\s*$)/;
+  //           var res=str.match(reg);
+  //           console.log(res);
+		// }
+
+
+		// 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
+		function each(arr, fn) {
+            
+             for (var i = 0; i < arr.length; i++) {
+             	fn(arr[i]);
+             }
+		}
+
+		// 其中fn函数可以接受两个参数：item和index
+
+		// 使用示例
+		var arr = ['java', 'c', 'php', 'html'];
+
+		function output(item) {
+			console.log(item)
+		}
+		each(arr, output); // java, c, php, html
+
+
+
+
+	</script>
+</body>
+</html>

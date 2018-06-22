@@ -25,6 +25,11 @@ export const removeStore = name => {
 	window.localStorage.removeItem(name);
 }
 
+
+    //获取相关CSS属性
+    var getCss = function(o,key){
+        return o.currentStyle? o.currentStyle[key] : document.defaultView.getComputedStyle(o,false)[key];   
+    };
 /**
  * 获取style样式
  */
